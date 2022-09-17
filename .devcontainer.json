@@ -1,0 +1,5 @@
+{
+    "name": "jupyterlab-pyspark",
+    "image": "jupyterlab-pyspark",
+    "extensions": ["ms-python.python"]
+}
