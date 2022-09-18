@@ -1,0 +1,31 @@
+version: '3'
+
+volumes:
+  src:
+    name: 'src'
+    driver: local
+
+services:
+  jupyter:
+    container_name: jupyter_package-cicd-testing
+    user: root
+    privileged: true
+    build:
+      context: .
+      dockerfile: jupyter.Dockerfile
+    restart: always
+    volumes:
+      # Mounting the work dir to the local git repo dir to keep local in sync with remote work
+      - src:/opt/src
+    environment:
+      - GRANT_SUDO=yes
+      - JUPYTER_ENABLE_LAB=yes
+    ports:
+      - "8888:8888"
+  vscode:
+    container_name: vs_code_package-cicd-testing
+    build:
+      context: .
+      dockerfile: vscode.Dockerfile
+    volumes:
+      - src:/opt/src
