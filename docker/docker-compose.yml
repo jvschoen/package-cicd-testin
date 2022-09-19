@@ -27,5 +27,7 @@ services:
     build:
       context: .
       dockerfile: vscode.Dockerfile
+    tty: true
     volumes:
       - src:/opt/src
+      - ../:/opt/local
